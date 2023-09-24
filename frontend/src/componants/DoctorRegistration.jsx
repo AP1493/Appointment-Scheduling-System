@@ -179,6 +179,8 @@ const DoctorRegistration = () => {
   }
 
   return (
+    <div className="form-div">
+      <h1>Doctor Registration</h1>
     <form onSubmit={handleSubmit} className="registration-form">
       <MDBInput
         label="Name"
@@ -295,6 +297,7 @@ const DoctorRegistration = () => {
           )}
       </MDBBtn>
     </form>
+    </div>
   );
 };
 

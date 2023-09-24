@@ -13,6 +13,7 @@ function AdminDashboard() {
   return (
     <div>
         <div className='dashboard-navigation'>
+          <MDBBtn onClick={() => { navigate('/doctorRegistration') }} style={{background: "#471e75", margin:0, fontWeight: 600}} block>Doctor Registration</MDBBtn>
           <MDBBtn onClick={()=>{ navigate("/calendar") }} style={{background: "#471e75", margin:0, fontWeight: 600}} block>Calendar</MDBBtn>
           <MDBBtn onClick={()=>{ navigate("/") }} style={{background: "#471e75", margin: 0, fontWeight: 600}} block>Home</MDBBtn>
       </div>

@@ -34,8 +34,10 @@ function ChooseSlots() {
               slot: `${ dayjs(date).format("DD-MM-YYYY") + " " + target.split(' ')[0]}`,
               issue: `${response || "Not Provided"}`,
             };
+
             console.log(dataToSend)
-            await axios.post('http://127.0.0.1/appointment/create', dataToSend)
+            
+            await axios.post('http://127.0.0.1:5000/appointment/create', dataToSend)
                 .then(() => {
                     alert("Your appointment is booked successfully")
                     navigate('/')
