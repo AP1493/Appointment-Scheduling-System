@@ -32,7 +32,17 @@ const AppointmentSchema = new mongoose.Schema({
     type:String,
     default:"-1",
     trim:true,
-  }
+  },
+  date:{
+    type: String,
+    required: [true, "Please provide date"],
+    trim: true
+  },
+  time:{
+    type: String,
+    required: [true, "Please provide time"],
+    trim: true
+  },
 },
   { timestamps: true }
 );

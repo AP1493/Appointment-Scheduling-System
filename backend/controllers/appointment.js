@@ -6,6 +6,11 @@ const Errors = require('../errors/index')
 
 const create = async (req, res) => {
 
+    req.body["date"] = req.body["slot"].split(' ')[0]
+    req.body["time"] = req.body["slot"].split(' ')[1]
+
+    console.log(req.body)
+
     const appointment = await Models.Appointment.create({ ...req.body })
     
     return res.status(StatusCodes.CREATED).json({
@@ -17,25 +22,41 @@ const create = async (req, res) => {
 
 const list = async (req, res) => {
 
-    const { id, type } = req.body
+    const { id, type, date } = req.body
 
-    console.log({id,type})
+    console.log({id,type, date})
 
     let appointments = []
 
     if(type==="patient")
     {
-        appointments = await Models.Appointment.find({ patient: id }).populate('patient').populate('doctor')
+        let filterObj = {}
+        filterObj.patient = id
+
+        if(date)
+        filterObj.date = date
+
+        appointments = await Models.Appointment.find(filterObj).populate('patient').populate('doctor')
     }
     else if(type==="doctor")
     {
-        appointments = await Models.Appointment.find({ doctor: id }).populate('patient').populate('doctor')
+        let filterObj = {}
+        filterObj.doctor = id
+
+        if(date)
+        filterObj.date = date
+
+        console.log(filterObj)
+    
+        appointments = await Models.Appointment.find(filterObj).populate('patient').populate('doctor')
     }
     else
     {
-        appointments = await Models.Appointment.find({})
+        appointments = await Models.Appointment.find({}).populate('patient').populate('doctor')
         console.log(appointments)
     }
+
+    console.log(appointments)
     
     return res.status(StatusCodes.OK).json({
 
@@ -77,6 +98,9 @@ const update = async (req, res) => {
     const filter = { _id: appointmentID };
     
     const update = { ...req.body };
+
+    req.body["data"] = req.body["slot"].split(' ')[0]
+    req.body["time"] = req.body["slot"].split(' ')[1]
 
     const appointment = await Models.Appointment.findOneAndUpdate(filter, update, { new: true });
 

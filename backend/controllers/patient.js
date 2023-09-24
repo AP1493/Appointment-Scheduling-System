@@ -104,9 +104,9 @@ const patient = async (req, res) => {
 
 const patientDetail = async (req, res) => {
 
-    const { id } = req.params
+    const { patientID } = req.params
 
-    const patient = await Models.Patient.findOne({ _id: id })
+    const patient = await Models.Patient.findOne({ _id: patientID })
 
     delete patient.password
 

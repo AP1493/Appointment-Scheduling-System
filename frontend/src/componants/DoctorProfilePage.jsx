@@ -27,16 +27,20 @@ export default function DoctorProfilePage() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [appointmentsList, setAppointmentList] = useState([]);
+  const [doctor, setDoctor] = useState([]);
 
-  const id = "650ecb4ebb66c7668bd7e4fc" //read from localstorage
+  const id = localStorage.getItem("unity-doctor-id")
 
   useEffect(() => {
     
     const fetchData = async () => {
 
       const response = await axios.post("http://localhost:5000/appointment/list", {id,type:"doctor"})
+      const responseDoctor = await axios.get(`http://localhost:5000/doctor/${id}`)
 
+      console.log(responseDoctor)
       setAppointmentList(response.data.appointments)
+      setDoctor(responseDoctor.data.doctor)
     } 
 
     fetchData()
@@ -128,24 +132,36 @@ export default function DoctorProfilePage() {
 
       <div className="admin-details">
 
+        <h2 className="title">Doctor Profile</h2>
+
         <div className="detail-line" style={{padding: "10px", margin: "5px"}}>
-            <p className="detail" style={{padding: 0, margin: 0}}>First Name</p>
-            <p className="detail" style={{padding: 0, margin: 0}}>Urvish Patel</p>
+            <p className="detail label" style={{padding: 0, margin: 0}}>First Name</p>
+            <p className="detail" style={{padding: 0, margin: 0}}>{doctor.name}</p>
         </div>
 
         <div className="detail-line" style={{padding: "10px", margin: "5px"}}>
-            <p className="detail" style={{padding: 0, margin: 0}}>First Name</p>
-            <p className="detail" style={{padding: 0, margin: 0}}>Urvish Patel</p>
+            <p className="detail label" style={{padding: 0, margin: 0}}>Email</p>
+            <p className="detail" style={{padding: 0, margin: 0}}>{doctor.email}</p>
         </div>
         
         <div className="detail-line" style={{padding: "10px", margin: "5px"}}>
-            <p className="detail" style={{padding: 0, margin: 0}}>First Name</p>
-            <p className="detail" style={{padding: 0, margin: 0}}>Urvish Patel</p>
+            <p className="detail label" style={{padding: 0, margin: 0}}>Phone Number</p>
+            <p className="detail" style={{padding: 0, margin: 0}}>{doctor.phoneNumber}</p>
         </div>
         
         <div className="detail-line" style={{padding: "10px", margin: "5px"}}>
-            <p className="detail" style={{padding: 0, margin: 0}}>First Name</p>
-            <p className="detail" style={{padding: 0, margin: 0}}>Urvish Patel</p>
+            <p className="detail label" style={{padding: 0, margin: 0}}>Age</p>
+            <p className="detail" style={{padding: 0, margin: 0}}>{doctor.age}</p>
+        </div>
+
+        <div className="detail-line" style={{padding: "10px", margin: "5px"}}>
+            <p className="detail label" style={{padding: 0, margin: 0}}>Speciality</p>
+            <p className="detail" style={{padding: 0, margin: 0}}>{doctor.speciality}</p>
+        </div>
+
+        <div className="detail-line" style={{padding: "10px", margin: "5px"}}>
+            <p className="detail label" style={{padding: 0, margin: 0}}>Venue</p>
+            <p className="detail" style={{padding: 0, margin: 0}}>{doctor.venue}</p>
         </div>
 
       </div>

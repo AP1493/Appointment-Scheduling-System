@@ -27,6 +27,7 @@ export default function PatientProfilePage() {
 
   const [isLoading, setIsLoading] = useState(true);
   const [appointmentsList, setAppointmentList] = useState([]);
+  const [patient, setPatient] = useState([]);
 
   // const id = "650ecd51cfef35880cc3c251" //read from localstorage
   const id = localStorage.getItem('unity-patient-id') //read from localstorage
@@ -36,10 +37,12 @@ export default function PatientProfilePage() {
     const fetchData = async () => {
 
       const response = await axios.post("http://localhost:5000/appointment/list", {id,type:"patient"})
+      const responsePatient = await axios.get(`http://localhost:5000/patient/${id}`)
 
       setAppointmentList(response.data.appointments)
+      setPatient(responsePatient.data.patient)
 
-      console.log(response)
+      // console.log(response)
     } 
 
     fetchData()
@@ -131,25 +134,43 @@ export default function PatientProfilePage() {
 
       <div className="admin-details">
 
+        <h2 className="title">Patient Profile</h2>
+
         <div className="detail-line" style={{padding: "10px", margin: "5px"}}>
-            <p className="detail" style={{padding: 0, margin: 0}}>First Name</p>
-            <p className="detail" style={{padding: 0, margin: 0}}>Urvish Patel</p>
+            <p className="detail label" style={{padding: 0, margin: 0}}>First Name</p>
+            <p className="detail" style={{padding: 0, margin: 0}}>{patient.name}</p>
         </div>
 
         <div className="detail-line" style={{padding: "10px", margin: "5px"}}>
-            <p className="detail" style={{padding: 0, margin: 0}}>First Name</p>
-            <p className="detail" style={{padding: 0, margin: 0}}>Urvish Patel</p>
+            <p className="detail label" style={{padding: 0, margin: 0}}>Email</p>
+            <p className="detail" style={{padding: 0, margin: 0}}>{patient.email}</p>
         </div>
-        
+
         <div className="detail-line" style={{padding: "10px", margin: "5px"}}>
-            <p className="detail" style={{padding: 0, margin: 0}}>First Name</p>
-            <p className="detail" style={{padding: 0, margin: 0}}>Urvish Patel</p>
+            <p className="detail label" style={{padding: 0, margin: 0}}>Phone Number</p>
+            <p className="detail" style={{padding: 0, margin: 0}}>{patient.phoneNumber}</p>
         </div>
-        
+
         <div className="detail-line" style={{padding: "10px", margin: "5px"}}>
-            <p className="detail" style={{padding: 0, margin: 0}}>First Name</p>
-            <p className="detail" style={{padding: 0, margin: 0}}>Urvish Patel</p>
+            <p className="detail label" style={{padding: 0, margin: 0}}>Age</p>
+            <p className="detail" style={{padding: 0, margin: 0}}>{patient.age}</p>
         </div>
+
+        <div className="detail-line" style={{padding: "10px", margin: "5px"}}>
+            <p className="detail label" style={{padding: 0, margin: 0}}>Weight</p>
+            <p className="detail" style={{padding: 0, margin: 0}}>{patient.weight}</p>
+        </div>
+
+        <div className="detail-line" style={{padding: "10px", margin: "5px"}}>
+            <p className="detail label" style={{padding: 0, margin: 0}}>Height</p>
+            <p className="detail" style={{padding: 0, margin: 0}}>{patient.height}</p>
+        </div>
+
+        <div className="detail-line" style={{padding: "10px", margin: "5px"}}>
+            <p className="detail label" style={{padding: 0, margin: 0}}>Disability</p>
+            <p className="detail" style={{padding: 0, margin: 0}}>{patient.disability===false?"No":"Yes"}</p>
+        </div>
+
 
       </div>
 

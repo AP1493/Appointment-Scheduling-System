@@ -165,7 +165,6 @@ export default function MDBForm() {
         </MDBTabsContent>
       </div>
       {/* </div> */}
-      <Footer />
     </>
   );
 }

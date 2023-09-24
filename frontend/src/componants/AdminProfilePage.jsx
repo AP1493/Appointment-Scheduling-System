@@ -46,26 +46,19 @@ export default function AdminProfilePage() {
 
       <div className="admin-details">
 
+      <h2 className="title">Admin Profile</h2>
+
         <div className="detail-line" style={{padding: "10px", margin: "5px"}}>
-            <p className="detail" style={{padding: 0, margin: 0}}>First Name</p>
+            <p className="detail label" style={{padding: 0, margin: 0}}>First Name</p>
             <p className="detail" style={{padding: 0, margin: 0}}>Urvish Patel</p>
         </div>
 
         <div className="detail-line" style={{padding: "10px", margin: "5px"}}>
-            <p className="detail" style={{padding: 0, margin: 0}}>First Name</p>
-            <p className="detail" style={{padding: 0, margin: 0}}>Urvish Patel</p>
-        </div>
-        
-        <div className="detail-line" style={{padding: "10px", margin: "5px"}}>
-            <p className="detail" style={{padding: 0, margin: 0}}>First Name</p>
-            <p className="detail" style={{padding: 0, margin: 0}}>Urvish Patel</p>
-        </div>
-        
-        <div className="detail-line" style={{padding: "10px", margin: "5px"}}>
-            <p className="detail" style={{padding: 0, margin: 0}}>First Name</p>
-            <p className="detail" style={{padding: 0, margin: 0}}>Urvish Patel</p>
+            <p className="detail label" style={{padding: 0, margin: 0}}>Phone Number</p>
+            <p className="detail" style={{padding: 0, margin: 0}}>8849906066</p>
         </div>
 
+        
       </div>
 
       <div className="admin-list">
